@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Brands-Regular-400.otf",
+      "sha1": "c2c41cf22ac9a828e333c40cec5a9ec1d46e1e0a"
+    },
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Duotone-Solid-900.otf",
+      "sha1": "282f6813544ea9a969ca1f41c58a37cf564e3514"
+    },
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Pro-Light-300.otf",
+      "sha1": "087e89bef3ffd5ae56d8b45be5f1761ef0c0f2f7"
+    },
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Pro-Regular-400.otf",
+      "sha1": "133471bd032671f0ac310e3eea6b35e9a487c41b"
+    },
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Pro-Solid-900.otf",
+      "sha1": "656b8d7c7865b3e80ea7eda449f2ae70fb791384"
+    },
+    {
+      "path": "src/assets/fonts/Font Awesome 6 Pro-Thin-100.otf",
+      "sha1": "2d7a75b27c2888c485a6c454e14b0b6b11af34b0"
+    },
+    {
+      "path": "src/assets/fonts/README.md",
+      "sha1": "98d6773bca41d51baf816015a7aad1bce31a8ff0"
+    }
+  ]
+}
