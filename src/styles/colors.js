@@ -4,7 +4,7 @@ export const colors = {
   darkBlue: '#0A2754', // Dark blue for header
   lightBlue: '#3B82F6', // Light blue for icons
   textDark: '#333333', // Main text color
-  textLight: '#828282', // Secondary text color
+  textLight: '#8095B9', // Secondary text color
   border: '#E0E0E0', // Border and divider color
   success: '#27AE60', // Green for positive status
   error: '#DF360C', // Red for error messages

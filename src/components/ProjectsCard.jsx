@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 
 import colors from '../styles/colors';
@@ -33,7 +33,7 @@ const statisticsStyles = StyleSheet.create({
   },
 });
 
-const ProjectsCard = ({item}) => {
+const ProjectsCard = ({item, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -52,7 +52,7 @@ const ProjectsCard = ({item}) => {
           icon={
             <ChartLineUpIcon width={25} height={25} color={colors.textLight} />
           }
-          title={'إجنالي المبلغ'}
+          title={'إجمالي المبلغ'}
           number={item.total}
         />
         <Statistics
@@ -74,10 +74,12 @@ const ProjectsCard = ({item}) => {
           style={styles.accent}
         />
       </View>
-      <View style={styles.footerContainer}>
+      <TouchableOpacity
+        style={styles.footerContainer}
+        onPress={() => navigation.navigate('تفاصيل المشروع')}>
         <Text style={styles.footerText}>عرض التفاصيل</Text>
         <LeftArrow />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -85,8 +87,7 @@ const ProjectsCard = ({item}) => {
 const styles = StyleSheet.create({
   container: {
     width: 371,
-    marginLeft: 10,
-    // padding: 16,
+    marginHorizontal: 5,
     borderRadius: 16,
     borderColor: colors.gray,
     borderWidth: 1,

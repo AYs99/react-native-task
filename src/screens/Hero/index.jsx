@@ -105,7 +105,9 @@ export default function Hero({navigation}) {
         <HeroSectionHeader title="المشاريع" />
         <FlatList
           data={projects}
-          renderItem={({item}) => <ProjectsCard item={item} />}
+          renderItem={({item}) => (
+            <ProjectsCard item={item} navigation={navigation} />
+          )}
           horizontal={true}
         />
       </View>
