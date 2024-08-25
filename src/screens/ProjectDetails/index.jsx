@@ -1,6 +1,14 @@
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  Image,
+} from 'react-native';
+import React, {useRef} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 import colors from '../../styles/colors';
 
@@ -69,6 +77,7 @@ const statisticsStyles = StyleSheet.create({
 });
 
 const ProjectDetails = () => {
+  const refRBSheet = useRef();
   return (
     <SafeAreaView style={styles.center}>
       <View style={styles.header}>
@@ -115,15 +124,65 @@ const ProjectDetails = () => {
           />
         </View>
       </View>
-      <TouchableOpacity style={styles.downloadButton}>
+      <TouchableOpacity
+        style={styles.downloadButton}
+        onPress={() => refRBSheet.current.open()}>
         <Text style={styles.downloadText}>تحميل ملف المصروفات</Text>
       </TouchableOpacity>
+      <RBSheet
+        ref={refRBSheet}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'rgba(10, 39, 84, 0.5)',
+            height: 50,
+          },
+          container: {
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            height: 300,
+          },
+        }}
+        customModalProps={{
+          animationType: 'slide',
+          statusBarTranslucent: true,
+        }}
+        customAvoidingViewProps={{
+          enabled: false,
+        }}>
+        <View style={styles.BSContainer}>
+          <TouchableOpacity
+            style={styles.BSClose}
+            onPress={() => refRBSheet.current.close()}>
+            <Text style={styles.BSCloseText}>X</Text>
+          </TouchableOpacity>
+          <View>
+            <Text style={styles.BSHeader}>من فضلك قم باختيار نوع الملف</Text>
+            <Text style={styles.BSSubHeader}>
+              يمكنك اختيار تنزيل الملف بالصيغ التالية
+            </Text>
+            <View style={styles.BSContentContainer}>
+              <TouchableOpacity>
+                <View style={styles.BSButtonPDF}>
+                  <Image source={require('../../assets/images/PDF.png')} />
+                  <Text style={styles.BSDownloadText}>ملف PDF</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <View style={styles.BSButtonExcel}>
+                  <Image source={require('../../assets/images/XLSX.png')} />
+                  <Text style={styles.BSDownloadText}>ملف Excel</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </RBSheet>
       <View style={styles.spendingContainer}>
         <Text style={styles.spendingTitle}>المصروفات</Text>
         <FlatList
           data={spendings}
           renderItem={({item}) => <SpendingsCard item={item} />}
-          style={{height: 500}}
+          style={styles.spendings}
         />
       </View>
     </SafeAreaView>
@@ -179,6 +238,43 @@ const styles = StyleSheet.create({
   downloadText: {color: colors.darkBlue, fontSize: 15},
   spendingContainer: {paddingTop: 25, paddingHorizontal: 18, width: '100%'},
   spendingTitle: {fontSize: 20, color: colors.darkBlue},
+  spendings: {height: 500},
+  BSContainer: {padding: 16},
+  BSClose: {
+    backgroundColor: colors.gray,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  BSCloseText: {fontWeight: '900'},
+  BSHeader: {fontSize: 20, color: colors.darkBlue},
+  BSSubHeader: {marginTop: 13, fontSize: 14, color: colors.textLight},
+  BSContentContainer: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-evenly',
+    paddingTop: 43,
+  },
+  BSButtonPDF: {
+    borderRadius: 11,
+    borderWidth: 2,
+    borderColor: colors.primary,
+    backgroundColor: '#FFF8E2',
+    paddingVertical: 23,
+    paddingHorizontal: 39,
+  },
+  BSDownloadText: {
+    fontSize: 8,
+    color: colors.darkBlue,
+    paddingTop: 13,
+  },
+  BSButtonExcel: {
+    borderRadius: 11,
+    backgroundColor: colors.gray,
+    paddingVertical: 23,
+    paddingHorizontal: 39,
+  },
 });
 
 export default ProjectDetails;
